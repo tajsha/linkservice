@@ -4,7 +4,11 @@ class LinkRequestsController < ApplicationController
   # GET /link_requests
   # GET /link_requests.json
   def index
-    @link_requests = LinkRequest.all
+    if params[:filter].present? and params[:filter] == 'me'
+      @link_requests = current_user.link_requests.order(id: :desc)
+    else
+      @link_requests = LinkRequest.all.order(id: :desc)
+    end
   end
 
   # GET /link_requests/1

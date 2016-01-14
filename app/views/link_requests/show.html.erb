@@ -14,10 +14,12 @@
   </div>
 </div>
 <h1>Offers</h1>
-<% @link_request.link_request_offers.each do |offer| %>
+<% @link_request.link_request_offers.order(id: :desc).each do |offer| %>
     <div class="panel panel-info">
       <div class="panel-heading">
         <h3 class="panel-title"><%= offer.user.email %></h3>
+        <button class="btn btn-success pull-right">Proceed</button>
+        <div class="clearfix"></div>
       </div>
       <div class="panel-body">
         <div class="row">
@@ -37,5 +39,3 @@
     </div>
 <% end %>
 
-<%= link_to 'Edit', edit_link_request_path(@link_request) %> |
-<%= link_to 'Back', link_requests_path %>

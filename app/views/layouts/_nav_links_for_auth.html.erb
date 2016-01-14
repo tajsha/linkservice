@@ -1,4 +1,11 @@
 <% if user_signed_in? %>
+  <% if current_user.publisher? %>
+        <li><%= link_to 'Open Requets', link_requests_path %></li>
+        <li><%= link_to 'Your Requets', link_requests_path(:filter => 'me') %></li>
+  <% elsif current_user.client? %>
+        <li><%= link_to 'Your Requets', link_requests_path(:filter => 'me') %></li>
+        <li><%= link_to 'Post a Request', new_link_request_path %></li>
+  <% end %>
   <li><%= link_to 'Edit account', edit_user_registration_path %></li>
   <li><a rel="nofollow" data-method="delete" href="/users/sign_out"><i class="fa fa-sign-out"></i> Sign out</a></li>
 <% else %>
@@ -8,7 +15,7 @@
   <li>
     <a href="/sign_up/user"><i class="fa fa-pencil"></i> Sign up</a>
   </li>
-  <li><button type="button" class="btn btn-default navbar-btn">Become a Publisher</button></li>
+  <li><a href="/users/sign_up?role=publisher" class="btn btn-default" role="button">Become a Publisher</a></li>
 <% end %>
 <% if user_signed_in? %>
   <% if current_user.try(:admin?) %>
