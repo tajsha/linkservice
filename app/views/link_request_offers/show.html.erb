@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @link_request_offer.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @link_request_offer.price %>
+</p>
+
+<p>
+  <strong>Link request:</strong>
+  <%= @link_request_offer.link_request_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @link_request_offer.status %>
+</p>
+
+<%= link_to 'Edit', edit_link_request_offer_path(@link_request_offer) %> |
+<%= link_to 'Back', link_request_offers_path %>

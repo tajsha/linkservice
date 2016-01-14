@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Link Request Offers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Link request</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @link_request_offers.each do |link_request_offer| %>
+      <tr>
+        <td><%= link_request_offer.description %></td>
+        <td><%= link_request_offer.price %></td>
+        <td><%= link_request_offer.link_request_id %></td>
+        <td><%= link_request_offer.status %></td>
+        <td><%= link_to 'Show', link_request_offer %></td>
+        <td><%= link_to 'Edit', edit_link_request_offer_path(link_request_offer) %></td>
+        <td><%= link_to 'Destroy', link_request_offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Link request offer', new_link_request_offer_path %>

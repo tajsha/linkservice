@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= @link_request.title %></h3>
+  </div>
+  <div class="panel-body">
+    <p><%= @link_request.description %></p>
+    <% if current_user.publisher? %>
+        <% unless current_user.link_request_offers.pluck(:link_request_id).include? (@link_request.id)%>
+            <%= render '/link_request_offers/form' %>
+        <% end %>
+    <% end %>
+  </div>
+</div>
+<h1>Offers</h1>
+<% @link_request.link_request_offers.each do |offer| %>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= offer.user.email %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-10">
+            <p><%= offer.description %></p>
+          </div>
+          <div class="col-md-1">
+            <p><span class="label label-default"><%= offer.status %></span></p>
+          </div>
+          <div class="col-md-1">
+            <p><span class="label label-default"><i class="fa fa-usd"></i><%= offer.price %></span></p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+<% end %>
+
+<%= link_to 'Edit', edit_link_request_path(@link_request) %> |
+<%= link_to 'Back', link_requests_path %>

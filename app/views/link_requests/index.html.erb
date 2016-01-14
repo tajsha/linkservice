@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Link Requests</h1>
+
+    <% @link_requests.each do |link_request| %>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= link_to link_request.title, link_request_path(link_request) %></h3>
+        </div>
+        <div class="panel-body">
+          <p><%= link_request.description %></p>
+          <% if current_user.publisher? %>
+              <% unless current_user.link_request_offers.pluck(:link_request_id).include? (link_request.id)%>
+                  <p>
+                    <a href="<%= link_request_path(link_request) %>" class="btn btn-primary" role="button">Add Offer</a>
+                  </p>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+<br>
+
+<%= link_to 'New Link request', new_link_request_path %>
