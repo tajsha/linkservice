@@ -1,0 +1,36 @@
+<div class="Row">
+  <h1>Order Confirmation</h1>
+  <div class="col-lg-5 col-md-5 col-sm-8 col-xs-9 bhoechie-tab-container">
+    <div class="panel panel-default" style="margin-top: 0;color:#55518a">
+      <!-- Default panel contents -->
+      <div class="panel-heading" style="margin-top: 0;color:#55518a"><h4>Request</h4></div>
+      <div class="panel-body">
+        <p><%= @order.link_request_offer.link_request.description %></p>
+      </div>
+
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Offer</th>
+          <th><p class="pull-right">Total</p></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>
+            <h3>Publisher: <%= @order.link_request_offer.user.name %></h3>
+            <p><%= @order.link_request_offer.description %></p>
+          </td>
+          <td style="vertical-align: bottom;"><p class="pull-right">$<%= @order.link_request_offer.price %></p></td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  <%= simple_form_for(@order) do |f| %>
+      <%= f.error_notification %>
+       <%= f.input :express_token, :as => :hidden %>
+       <%= f.input :link_request_offer_id, :as => :hidden %>
+       <button type="submit" class="btn btn-primary">Complete Order</button>
+    <% end %>
+</div>

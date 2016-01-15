@@ -1,0 +1,38 @@
+<h1>Order Payments</h1>
+
+<% @orders.each do |order| %>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-8">
+            <h3 class="panel-title">Order #LS012<%= order.id %></h3>
+          </div>
+          <div class="col-md-4">
+            <h3 class="pull-right"><%= order.created_at.strftime("%Y-%m-%d") %></h3>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <p><%= order.link_request_offer.description %></p>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Offer</th>
+            <th><p class="pull-right">Total</p></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>
+              <h3>To Publisher: <%= order.link_request_offer.user.name %></h3>
+              <p><%= order.link_request_offer.description %></p>
+            </td>
+            <td style="vertical-align: bottom;"><p class="pull-right">$<%= order.link_request_offer.price %></p></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+<% end %>
+
+<br>

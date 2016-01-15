@@ -1,5 +1,5 @@
 class LinkRequestOffersController < ApplicationController
-  before_action :set_link_request_offer, only: [:show, :edit, :update, :destroy]
+  before_action :set_link_request_offer, only: [:show, :edit, :update, :destroy, :offer_payment]
 
   # GET /link_request_offers
   # GET /link_request_offers.json
@@ -29,7 +29,7 @@ class LinkRequestOffersController < ApplicationController
     @link_request_offer.status = 'I'
     respond_to do |format|
       if @link_request_offer.save
-        format.html { redirect_to @link_request_offer, notice: 'Link request offer was successfully created.' }
+        format.html { redirect_to link_request_url(@link_request_offer.link_request), notice: 'Link request offer was successfully created.' }
         format.json { render :show, status: :created, location: @link_request_offer }
       else
         format.html { render :new }

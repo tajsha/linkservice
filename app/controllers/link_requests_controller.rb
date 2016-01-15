@@ -5,9 +5,17 @@ class LinkRequestsController < ApplicationController
   # GET /link_requests.json
   def index
     if params[:filter].present? and params[:filter] == 'me'
-      @link_requests = current_user.link_requests.order(id: :desc)
+      if current_user.publisher?
+        @link_requests = LinkRequest.where(:id => current_user.link_request_offers.map(&:link_request_id)).order(id: :desc)
+      else
+        @link_requests = current_user.link_requests.order(id: :desc)
+      end
     else
-      @link_requests = LinkRequest.all.order(id: :desc)
+      if current_user.publisher?
+        @link_requests = LinkRequest.where.not(:id => current_user.link_request_offers.map(&:link_request_id)).order(id: :desc)
+      else
+        @link_requests = LinkRequest.all.order(id: :desc)
+      end
     end
   end
 

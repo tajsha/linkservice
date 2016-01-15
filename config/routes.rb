@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  resources :link_request_offers
+  # POST /registrations
+  resources :orders do
+    collection do
+      get :express
+    end
+  end
+  get "paypal_express/checkout"
+  resources :link_request_offers do
+    member do
+      get :offer_payment
+    end
+  end
   resources :link_requests
   namespace :admin do
     DashboardManifest::DASHBOARDS.each do |dashboard_resource|
@@ -7,7 +18,7 @@ Rails.application.routes.draw do
     end
     root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
   end
-  root to: 'visitors#index'
+  root to: 'link_requests#index'
   devise_for :users
   resources :users
 end
