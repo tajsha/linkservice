@@ -11,7 +11,7 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
-gem 'administrate'
+gem "administrate", github: "mariochavez/administrate", branch: "remove-inline_svg"
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'devise_invitable'

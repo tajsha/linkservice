@@ -1,9 +1,10 @@
 <% if user_signed_in? %>
-    <li><%= link_to 'Payments', orders_url %></li>
   <% if current_user.publisher? %>
+        <li><%= link_to 'Payments', orders_url %></li>
         <li><%= link_to 'Open Requets', link_requests_path %></li>
         <li><%= link_to 'Your Requets', link_requests_path(:filter => 'me') %></li>
   <% elsif current_user.client? %>
+        <li><%= link_to 'Payments', orders_url %></li>
         <li><%= link_to 'Your Requets', link_requests_path(:filter => 'me') %></li>
         <li><%= link_to 'Post a Request', new_link_request_path %></li>
   <% end %>

@@ -92,4 +92,15 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Force ActiveMerchant into test mode
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+        login: Rails.application.secrets.paypal_login,
+        password: Rails.application.secrets.paypal_password,
+        signature: Rails.application.secrets.paypal_signature
+    }
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end
