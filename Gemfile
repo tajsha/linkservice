@@ -39,3 +39,5 @@ group :test do
 end
 
 gem 'activemerchant'
+
+gem 'mail'
