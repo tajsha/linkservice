@@ -19,7 +19,7 @@
           <% if current_user.present? and current_user.publisher? %>
               <% unless current_user.link_request_offers.pluck(:link_request_id).include? (link_request.id)%>
                   <p>
-                    <a href="<%= link_request_path(link_request) %>" class="btn btn-primary" role="button">Add Offer</a>
+                    <a href="<%= link_request_path(link_request) %>" class="btn btn-primary" role="button">Make an Offer</a>
                   </p>
               <% end %>
           <% end %>
