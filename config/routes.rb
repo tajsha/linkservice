@@ -19,6 +19,6 @@ Rails.application.routes.draw do
     root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
   end
   root to: 'link_requests#index'
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
 end
