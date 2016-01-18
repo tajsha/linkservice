@@ -20,7 +20,7 @@
     <% @link_request.link_request_offers.order(id: :desc).each do |offer| %>
         <div class="panel panel-info">
           <div class="panel-heading">
-            <h3 class="panel-title"><%= offer.user.email %></h3>
+            <h3 class="panel-title"><%= offer.user.name %></h3>
             <% if current_user.present? and (current_user == @link_request.user) and offer.status ==  'I' %>
                 <a href="<%= offer_payment_link_request_offer_path(offer) %>" class="btn btn-success pull-right" role="button">Proceed to Pay</a>
             <% end %>
