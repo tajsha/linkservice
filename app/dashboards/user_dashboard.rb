@@ -29,7 +29,7 @@ class UserDashboard < Administrate::BaseDashboard
     confirmed_at: Field::DateTime,
     confirmation_sent_at: Field::DateTime,
     unconfirmed_email: Field::String,
-    role: Field::Number,
+    role: Field::String,
     invitation_token: Field::String,
     invitation_created_at: Field::DateTime,
     invitation_sent_at: Field::DateTime,
